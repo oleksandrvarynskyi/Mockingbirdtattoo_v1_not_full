@@ -6,7 +6,7 @@
     <title>Guest Spot</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="icon" type="image/png" href="./access/img/favicon.png" />
+    <link rel="icon" type="image/png" href="access/img/favicon.png" />
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
@@ -15,15 +15,15 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <header class="site-header">
       <div class="container nav-inner">
-        <a class="logo-link" href="./index.html" aria-label="Homepage">
+        <a class="logo-link" href="index.html" aria-label="Homepage">
           <div class="logo-box">
             <img
-              src="./access/img/new_logo.png"
+              src="access/img/client-logo.png"
               alt="Mockingbird Tattoo Studio"
             />
           </div>
@@ -32,14 +32,14 @@
           <span></span><span></span>
         </button>
         <nav class="main-nav" id="mainNav">
-          <a href="./artists.html">Artists</a>
-          <a href="./tattoo-piercing.html">Tattoo & Piercing</a>
-          <a href="./care-faq.html">Care & FAQ</a>
-          <a href="./guest-spot.html">Guest Spot</a>
-          <a href="./reviews.html">Reviews</a>
-          <a href="./location.html">Location</a>
-          <a href="./contact.html">Contact</a>
-          <a class="nav-book" href="./book.html">Book Appointment</a>
+          <a href="artists.html">Artists</a>
+          <a href="tattoo-piercing.html">Tattoo & Piercing</a>
+          <a href="care-faq.html">Care & FAQ</a>
+          <a href="guest-spot.html">Guest Spot</a>
+          <a href="reviews.html">Reviews</a>
+          <a href="location.html">Location</a>
+          <a href="contact.html">Contact</a>
+          <a class="nav-book" href="book.html">Book Appointment</a>
         </nav>
       </div>
     </header>
@@ -48,28 +48,50 @@
       <section class="page-hero warm-hero">
         <div class="container">
           <span class="eyebrow dark">Guest Spot</span>
-          <h1>Guest artist requests</h1>
-          <p>For visiting artists interested in working from the studio.</p>
+          <h1>Come visit our home ❤️</h1>
+          <!-- <p>For visiting artists interested in working from the studio.</p> -->
         </div>
       </section>
       <section class="guest-section">
         <div class="container guest-grid">
           <div class="guest-copy">
-            <h2>Apply for a guest spot</h2>
+            <h2></h2>
             <p>
-              Send portfolio, preferred dates and a short introduction. The form
-              is dark while the background stays light for stronger contrast.
+              Thank you for your interest in guest spotting at our shop. We’re
+              always excited to welcome talented new artists into our space. If
+              you’re interested in further detail about our guesting at our
+              space, please fill out the application and we will contact you
+              directly.<br />
+              We can’t wait to work with you!
+              <br />
+              We accept international guest tattoo artists, local guest
+              tattooers, and short term rental for our tattoo stations.<br />
+              We provide everything you need aside from needles and colour inks!
+              Just bring your machine and we will make sure you have everything
+              else you need!<br />
+              We have variable rates we can discuss with you. We want to make
+              sure the price works for you and how much you will be working.
+              Percentage and daily rate options available! 24 Hr access to the
+              shop and a full time front desk staff to help.<br />
+              Our shop has high walk-in traffic everyday of the week.<br />
+              225 10th Street Northwest<br />
+              Calgary, Alberta<br />
+              Canada
             </p>
           </div>
-          <form class="dark-form">
+          <form class="dark-form" id="guestForm" novalidate>
             <label class="required-label">Name</label>
-            <input required placeholder="Name" />
+            <input required placeholder="Name" id="guestName" />
 
             <label class="required-label">Instagram / Portfolio</label>
-            <input required placeholder="@instagram or portfolio link" />
+            <input
+              required
+              placeholder="@instagram or portfolio link"
+              id="guestPortfolio"
+            />
 
             <label class="required-label">Experience level</label>
-            <select required>
+            <select required id="guestExperience">
               <option value="">Select experience</option>
               <option>Apprentice</option>
               <option>1-2 years</option>
@@ -78,11 +100,12 @@
             </select>
 
             <label class="required-label">Preferred dates</label>
-            <input required placeholder="Preferred dates" />
+            <input required placeholder="Preferred dates" id="guestDates" />
 
             <label>Message</label>
             <textarea
               placeholder="Tell us about your work and availability"
+              id="guestMessage"
             ></textarea>
 
             <button>Send Guest Request</button>
@@ -112,7 +135,7 @@
           <span class="footer-label">Hours</span>
           <div class="footer-info">
             <span>Mon — Sat</span>
-            <span>12:00 — 17:00</span>
+            <span>12:00 PM - 05:00 PM</span>
           </div>
           <div class="footer-info">
             <span>Sunday</span>
@@ -168,6 +191,7 @@
       </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/script.js"></script>
   </body>
 </html>

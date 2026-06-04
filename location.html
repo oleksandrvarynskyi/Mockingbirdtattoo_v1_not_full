@@ -6,7 +6,7 @@
     <title>Location</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="icon" type="image/png" href="./access/img/favicon.png" />
+    <link rel="icon" type="image/png" href="access/img/favicon.png" />
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
@@ -15,15 +15,15 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <header class="site-header">
       <div class="container nav-inner">
-        <a class="logo-link" href="./index.html" aria-label="Homepage">
+        <a class="logo-link" href="index.html" aria-label="Homepage">
           <div class="logo-box">
             <img
-              src="./access/img/new_logo.png"
+              src="access/img/client-logo.png"
               alt="Mockingbird Tattoo Studio"
             />
           </div>
@@ -32,14 +32,14 @@
           <span></span><span></span>
         </button>
         <nav class="main-nav" id="mainNav">
-          <a href="./artists.html">Artists</a>
-          <a href="./tattoo-piercing.html">Tattoo & Piercing</a>
-          <a href="./care-faq.html">Care & FAQ</a>
-          <a href="./guest-spot.html">Guest Spot</a>
-          <a href="./reviews.html">Reviews</a>
-          <a href="./location.html">Location</a>
-          <a href="./contact.html">Contact</a>
-          <a class="nav-book" href="./book.html">Book Appointment</a>
+          <a href="artists.html">Artists</a>
+          <a href="tattoo-piercing.html">Tattoo & Piercing</a>
+          <a href="care-faq.html">Care & FAQ</a>
+          <a href="guest-spot.html">Guest Spot</a>
+          <a href="reviews.html">Reviews</a>
+          <a href="location.html">Location</a>
+          <a href="contact.html">Contact</a>
+          <a class="nav-book" href="book.html">Book Appointment</a>
         </nav>
       </div>
     </header>
@@ -49,23 +49,49 @@
         <div class="container">
           <span class="eyebrow dark">Location</span>
           <h1>Visit the studio</h1>
-          <p>Hours, parking and map information.</p>
+          <p class="location-intro">
+            Located in the heart of Kensington, Calgary. Visit our studio for
+            custom tattoos, piercings, consultations, or simply stop by to meet
+            the team.
+          </p>
         </div>
       </section>
       <section class="location-page">
         <div class="container location-cards">
           <article>
-            <h3>Hours</h3>
-            <p>Mon–Sat: 11AM–8PM</p>
+            <h3>Studio Hours</h3>
+            <p>Mon – Sat</p>
+            <p>12:00 PM – 5:00 PM</p>
             <p>Sunday by appointment</p>
           </article>
+
+          <a
+            href="https://maps.google.com/?q=Mockingbird+Tattoos"
+            target="_blank"
+            class="location-photo"
+          >
+            <img src="access/img/location.jpeg" alt="Mockingbird Tattoos" />
+          </a>
+
           <article>
-            <h3>Address</h3>
+            <h3>Location</h3>
+            <p>Kensington</p>
             <p>Calgary, Alberta</p>
             <p>Parking available nearby</p>
+            <p>Walk-ins welcome</p>
           </article>
         </div>
-        <div class="map-dark">Embedded Google Map</div>
+        <div class="map-dark">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2507.975287738803!2d-114.08613709999999!3d51.053544099999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53716ffaaecb4ed3%3A0x565e5e9e5e6d8f56!2sMockingbird%20Tattoos!5e0!3m2!1sen!2sca!4v1780444640379!5m2!1sen!2sca"
+            width="100%"
+            height="450"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
       </section>
     </main>
 
@@ -90,7 +116,7 @@
           <span class="footer-label">Hours</span>
           <div class="footer-info">
             <span>Mon — Sat</span>
-            <span>12:00 — 17:00</span>
+            <span>12:00 PM - 05:00 PM</span>
           </div>
           <div class="footer-info">
             <span>Sunday</span>
