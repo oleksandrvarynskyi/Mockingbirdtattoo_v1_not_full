@@ -3575,3 +3575,449 @@ textarea {
   object-fit: cover;
   object-position: top center;
 }
+
+
+/* Final polish patch */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Stronger but same text for service / artist CTA links */
+.text-link.light,
+.see-all-artists {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 52px;
+  padding: 14px 24px !important;
+  border-radius: 999px;
+  border: 1px solid rgba(240, 231, 148, 0.36) !important;
+  background: rgba(170, 103, 28, 0.2) !important;
+  color: var(--client-khaki) !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.24);
+  transition: transform 0.22s ease, background 0.22s ease, color 0.22s ease;
+}
+.text-link.light:hover,
+.see-all-artists:hover {
+  background: var(--client-orange) !important;
+  color: #fff !important;
+  transform: translateY(-2px);
+}
+
+/* Reviews contrast */
+.review-card {
+  background: rgba(17, 20, 25, 0.96) !important;
+}
+.review-card p,
+.review-card span,
+.review-card small {
+  color: #f0e794 !important;
+}
+
+/* Restore portfolio masonry for normal artist pages */
+.portfolio-feed {
+  display: block !important;
+  columns: 3 280px !important;
+  column-gap: 18px !important;
+  margin-top: 50px;
+}
+.portfolio-item {
+  width: 100%;
+  margin: 0 0 18px !important;
+  break-inside: avoid !important;
+  background: transparent !important;
+  padding: 0 !important;
+  overflow: hidden;
+  border-radius: 24px;
+}
+.portfolio-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 24px;
+}
+
+/* Only artists with 1-2 works become a neat horizontal row */
+.portfolio-feed.few-items {
+  display: grid !important;
+  columns: initial !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px !important;
+}
+.portfolio-feed.few-items .portfolio-item {
+  margin: 0 !important;
+}
+.portfolio-feed.few-items .portfolio-item img {
+  height: 520px;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Care cards read more */
+.care-copy {
+  max-height: 112px;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.care-card.expanded .care-copy {
+  max-height: 900px;
+}
+.care-card p {
+  max-height: none !important;
+  overflow: visible !important;
+}
+.read-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 20px;
+  padding: 0;
+  border: 0;
+  background: transparent !important;
+  color: #d9c7a2 !important;
+  font-weight: 800;
+  font-size: 15px;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+}
+.read-more-symbol {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid rgba(240, 231, 148, 0.42);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  color: var(--client-orange);
+}
+.read-more-label {
+  border-bottom: 1px solid rgba(217, 199, 162, 0.55);
+}
+
+/* FAQ: one stable block per question */
+.faq-grid {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px;
+}
+.faq-item {
+  width: 100%;
+}
+.faq-answer {
+  background: rgba(17, 20, 25, 0.54) !important;
+  color: #f0e794 !important;
+  padding: 0 30px 28px !important;
+}
+.faq-question {
+  color: #f0e794 !important;
+}
+.faq-symbol {
+  color: var(--client-orange) !important;
+}
+
+/* Mobile nav icon: no gold button background, clean animated lines */
+.nav-toggle {
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+.nav-toggle span {
+  width: 30px;
+  height: 2px;
+  background: #fff !important;
+  border-radius: 999px;
+  transition: transform 0.3s ease, opacity 0.2s ease;
+  transform-origin: center;
+}
+.nav-toggle.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Prevent hero collage from pushing the mobile viewport */
+.hero,
+.hero-grid,
+.hero-collage {
+  max-width: 100%;
+}
+.hero-collage {
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .review-card {
+    min-width: 86vw;
+  }
+  .hero-grid {
+    gap: 28px;
+  }
+  .visual-large {
+    width: 68%;
+    height: 360px;
+  }
+  .visual-small {
+    width: 44%;
+    height: 165px;
+  }
+  .portfolio-feed,
+  .portfolio-feed.few-items {
+    display: grid !important;
+    columns: initial !important;
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+  .portfolio-feed.few-items .portfolio-item img {
+    height: auto;
+  }
+}
+
+/* === v3 feedback polish: unified CTAs, FAQ icons, read-more link, orange mobile toggle === */
+/* One visual language for primary CTA buttons on index + shared booking CTAs */
+.btn,
+.btn-primary,
+.btn-ghost_main,
+.btn-dark,
+.nav-book,
+.text-link.light,
+.see-all-artists,
+.reviews-all-btn,
+.footer-book-btn,
+.booking-card button,
+.dark-form button,
+form button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 54px !important;
+  padding: 0 26px !important;
+  border-radius: 999px !important;
+  background: var(--client-orange, #aa671c) !important;
+  color: #fff !important;
+  border: 1px solid rgba(240, 231, 148, 0.26) !important;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22) !important;
+  font-family: Inter, sans-serif !important;
+  font-size: 13px !important;
+  line-height: 1 !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  transition:
+    transform 0.22s ease,
+    background 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease,
+    color 0.22s ease !important;
+}
+
+.btn:hover,
+.btn-primary:hover,
+.btn-ghost_main:hover,
+.btn-dark:hover,
+.nav-book:hover,
+.text-link.light:hover,
+.see-all-artists:hover,
+.reviews-all-btn:hover,
+.footer-book-btn:hover,
+.booking-card button:hover,
+.dark-form button:hover,
+form button:hover {
+  background: #c97a24 !important;
+  color: #fff !important;
+  border-color: rgba(240, 231, 148, 0.52) !important;
+  box-shadow: 0 18px 42px rgba(170, 103, 28, 0.28) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Read More on care cards: same family as View Artist link, not a white button */
+.read-more-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin-top: 20px !important;
+  min-height: auto !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: var(--client-orange, #aa671c) !important;
+  font-family: Inter, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+  transition: color 0.22s ease, transform 0.22s ease !important;
+}
+.read-more-btn:hover {
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #c97a24 !important;
+  transform: translateX(3px) !important;
+}
+.read-more-label {
+  border: 0 !important;
+}
+.read-more-symbol {
+  display: none !important;
+}
+.read-more-arrow {
+  color: currentColor !important;
+  line-height: 1 !important;
+}
+
+/* FAQ: plus/minus belongs to the question line only */
+.faq-question {
+  color: var(--client-khaki, #f0e794) !important;
+  gap: 18px !important;
+}
+.faq-symbol {
+  flex: 0 0 auto !important;
+  width: 34px !important;
+  height: 34px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(170, 103, 28, 0.45) !important;
+  color: var(--client-orange, #aa671c) !important;
+  font-family: Inter, sans-serif !important;
+  font-size: 24px !important;
+  line-height: 1 !important;
+}
+
+/* Mobile hamburger: orange lines to orange cross, no background */
+.nav-toggle {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+.nav-toggle span {
+  background: var(--client-orange, #aa671c) !important;
+}
+
+@media (max-width: 768px) {
+  .btn,
+  .btn-primary,
+  .btn-ghost_main,
+  .btn-dark,
+  .nav-book,
+  .text-link.light,
+  .see-all-artists,
+  .reviews-all-btn,
+  .footer-book-btn {
+    min-height: 50px !important;
+    padding: 0 22px !important;
+    font-size: 12px !important;
+  }
+}
+
+
+/* === v4 final polish: header CTA, footer labels, cache-busted CSS links === */
+.site-header .nav-book,
+.site-header .main-nav .nav-book,
+.main-nav a.nav-book {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 54px !important;
+  padding: 0 26px !important;
+  border-radius: 999px !important;
+  background: var(--client-orange, #aa671c) !important;
+  color: #fff !important;
+  border: 1px solid rgba(240, 231, 148, 0.26) !important;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22) !important;
+  font-family: Inter, sans-serif !important;
+  font-size: 13px !important;
+  line-height: 1 !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  filter: none !important;
+  transition:
+    transform 0.22s ease,
+    background 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease,
+    color 0.22s ease !important;
+}
+
+.site-header .nav-book:hover,
+.site-header .main-nav .nav-book:hover,
+.main-nav a.nav-book:hover {
+  background: #c97a24 !important;
+  color: #fff !important;
+  border-color: rgba(240, 231, 148, 0.52) !important;
+  box-shadow: 0 18px 42px rgba(170, 103, 28, 0.28) !important;
+  transform: translateY(-2px) !important;
+  opacity: 1 !important;
+}
+
+.cinematic-footer .footer-label,
+.footer-label {
+  color: var(--client-orange, #aa671c) !important;
+  opacity: 1 !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.22em !important;
+  text-shadow: 0 0 18px rgba(170, 103, 28, 0.22) !important;
+}
+
+@media (max-width: 768px) {
+  .site-header .nav-book,
+  .site-header .main-nav .nav-book,
+  .main-nav a.nav-book {
+    min-height: 50px !important;
+    padding: 0 22px !important;
+    font-size: 12px !important;
+  }
+}
+
+
+/* FAQ visibility polish v5 */
+.read-more-btn,
+.read-more-btn .read-more-label,
+.read-more-btn .read-more-arrow{
+  color: var(--client-orange) !important;
+}
+.read-more-label{
+  border-bottom-color: rgba(224,140,72,.55) !important;
+}
+.faq-question{
+  color:#ffffff !important;
+}
+.faq-symbol{
+  color:#ffffff !important;
+  font-weight:700;
+}
+.faq-answer{
+  background:#1a1f1b !important;
+  color:#ffffff !important;
+  border-left:3px solid var(--client-orange);
+  border-radius:0 0 12px 12px;
+}
+.faq-answer p{
+  color:#ffffff !important;
+}

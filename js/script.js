@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollAnimations();
   initPortfolioLightbox();
   initArtistSlider();
+  initCareReadMore();
+  initPortfolioFewItems();
 });
 
 function qs(selector, parent = document) {
@@ -24,6 +26,7 @@ function initMobileMenu() {
 
   navToggle.addEventListener("click", () => {
     mainNav.classList.toggle("open");
+    navToggle.classList.toggle("active");
   });
 }
 
@@ -587,3 +590,28 @@ function initGuestForm() {
 
 }
 
+function initCareReadMore() {
+  const buttons = qsa(".read-more-btn");
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const card = button.closest(".care-card");
+      const label = qs(".read-more-label", button);
+      if (!card) return;
+
+      card.classList.toggle("expanded");
+      const isExpanded = card.classList.contains("expanded");
+
+      if (label) label.textContent = isExpanded ? "Show Less" : "Read More";
+    });
+  });
+}
+
+function initPortfolioFewItems() {
+  qsa(".portfolio-feed").forEach((feed) => {
+    const items = qsa(".portfolio-item", feed);
+    if (items.length && items.length <= 2) {
+      feed.classList.add("few-items");
+    }
+  });
+}
