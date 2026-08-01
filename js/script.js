@@ -534,11 +534,35 @@ function initGuestForm() {
       return;
     }
 
+const formData = new FormData(guestForm);
+
+fetch(guestForm.action, {
+  method: "POST",
+  body: formData,
+  headers: {
+    Accept: "application/json",
+  },
+})
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Form submission failed");
+    }
+
     showAlert(
       "success",
-      "Guest request ready!",
-      "The form is valid. Connect a backend or form service to send this request."
+      "Guest request sent!",
+      "Thank you. We will get back to you soon."
     );
+
+    guestForm.reset();
+  })
+  .catch(() => {
+    showAlert(
+      "error",
+      "Message not sent",
+      "Please try again or contact the studio by email."
+    );
+  });
 
     guestForm.reset();
   });
