@@ -213,7 +213,13 @@ function initBookingForm() {
       return;
     }
 
-    // console.log("Booking submit reached");
+    const submitButton = bookingForm.querySelector('button[type="submit"]');
+    const originalButtonText = submitButton ? submitButton.textContent : "";
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = "Sending...";
+    }
 
     fetch(bookingForm.action, {
       method: "POST",
@@ -224,9 +230,6 @@ function initBookingForm() {
     })
       .then(async (response) => {
         const data = await response.json().catch(() => null);
-
-        // console.log("FormSubmit status:", response.status);
-        // console.log("FormSubmit response:", data);
 
         if (!response.ok) {
           throw new Error(data?.message || "Form submission failed");
@@ -242,13 +245,17 @@ function initBookingForm() {
         updateBookingFields();
       })
       .catch((error) => {
-        // console.error("Booking form error:", error);
-
         showAlert(
           "error",
           "Message not sent",
           error.message || "Please try again or contact the studio by email.",
         );
+      })
+      .finally(() => {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = originalButtonText;
+        }
       });
   });
 
@@ -591,6 +598,14 @@ function initGuestForm() {
 
     const formData = new FormData(guestForm);
 
+    const submitButton = guestForm.querySelector('button[type="submit"]');
+    const originalButtonText = submitButton ? submitButton.textContent : "";
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = "Sending...";
+    }
+
     fetch(guestForm.action, {
       method: "POST",
       body: formData,
@@ -617,6 +632,12 @@ function initGuestForm() {
           "Message not sent",
           "Please try again or contact the studio by email.",
         );
+      })
+      .finally(() => {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = originalButtonText;
+        }
       });
   });
 
