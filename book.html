@@ -100,9 +100,16 @@
             data-form-purpose="booking-request"
             enctype="multipart/form-data"
             id="bookingForm"
-            method="post"
+            action="https://formsubmit.co/ajax/ovarynskyi@gmail.com"
+            method="POST"
             novalidate=""
           >
+            <input
+              type="hidden"
+              name="_subject"
+              value="New Booking Request — Mockingbird Tattoo Studio"
+            />
+            <input type="text" name="_honey" style="display: none" />
             <label for="serviceType"> Service type </label>
             <select id="serviceType" name="serviceType" required="">
               <option value="Tattoo">Tattoo</option>
@@ -148,14 +155,14 @@
               placeholder="Tell us about your tattoo idea, placement and size"
               required=""
             ></textarea>
-            <label for="referenceUrl"> Reference image or link </label>
-            <div class="upload-options">
-              <input
-                id="referenceUrl"
-                name="referenceUrl"
-                placeholder="Paste reference link / Instagram / Pinterest"
-                type="url"
-              />
+            <label for="referenceUrl"> Reference link </label>
+            <input
+              id="referenceUrl"
+              name="referenceUrl"
+              placeholder="Paste reference link / Instagram / Pinterest"
+              type="url"
+            />
+            <!--  <div class="upload-options">
               <small> or upload a sketch / reference image </small>
               <input
                 accept="image/jpeg,image/png,image/webp,image/heic,image/heif"
@@ -163,7 +170,7 @@
                 name="referenceFile"
                 type="file"
               />
-            </div>
+            </div>-->
             <div class="date-wrapper">
               <label for="preferredDate"> Preferred date </label>
               <div class="date-input-wrapper">
