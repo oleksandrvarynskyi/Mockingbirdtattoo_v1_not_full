@@ -81,29 +81,44 @@ function initBookingForm() {
   `;
 
   function updateBookingFields() {
-    if (serviceType.value === "Piercing") {
+    const isPiercing = serviceType.value === "Piercing";
+
+    if (isPiercing) {
       ideaLabel.textContent = "Piercing details";
       ideaField.placeholder =
         "Tell us what piercing you are interested in and any important details";
       artistSelect.innerHTML = `<option value="Wiktoria">Wiktoria</option>`;
       artistSelect.value = "Wiktoria";
+
+      if (ageConfirm) {
+        ageConfirm.required = false;
+        ageConfirm.checked = false;
+      }
     } else {
       ideaLabel.textContent = "Tattoo idea";
       ideaField.placeholder =
         "Tell us about your tattoo idea, placement and size";
       artistSelect.innerHTML = tattooArtists;
+
+      if (ageConfirm) {
+        ageConfirm.required = true;
+      }
     }
   }
 
   function getErrorTarget(field) {
     if (!field) return null;
-    return field.closest(".form-checkbox") || field.closest(".date-wrapper") || field;
+    return (
+      field.closest(".form-checkbox") || field.closest(".date-wrapper") || field
+    );
   }
 
   function clearFieldError(field) {
     const target = getErrorTarget(field);
     if (!target) return;
+
     target.classList.remove("form-error");
+
     const next = target.nextElementSibling;
     if (next && next.classList.contains("error-message")) {
       next.remove();
@@ -115,9 +130,7 @@ function initBookingForm() {
       .querySelectorAll(".form-error")
       .forEach((el) => el.classList.remove("form-error"));
 
-    bookingForm
-      .querySelectorAll(".error-message")
-      .forEach((el) => el.remove());
+    bookingForm.querySelectorAll(".error-message").forEach((el) => el.remove());
   }
 
   function showError(field, message) {
@@ -127,6 +140,8 @@ function initBookingForm() {
     }
 
     const target = getErrorTarget(field);
+    if (!target) return;
+
     target.classList.add("form-error");
 
     const error = document.createElement("div");
@@ -136,7 +151,7 @@ function initBookingForm() {
 
     target.scrollIntoView({
       behavior: "smooth",
-      block: "center"
+      block: "center",
     });
 
     field.focus();
@@ -160,6 +175,7 @@ function initBookingForm() {
 
     const nameInput = qs("#fullName", bookingForm);
     const emailInput = qs("#email", bookingForm);
+    const isTattoo = serviceType.value === "Tattoo";
 
     if (!nameInput || nameInput.value.trim().length < 2) {
       showError(nameInput, "Please enter your full name.");
@@ -171,61 +187,76 @@ function initBookingForm() {
       return;
     }
 
+    if (!serviceType.value.trim()) {
+      showError(serviceType, "Please select a service.");
+      return;
+    }
+
     if (ideaField.value.trim().length < 10) {
       showError(ideaField, "Please provide more details.");
       return;
     }
 
-    if (ageConfirm && !ageConfirm.checked) {
-      showError(ageConfirm, "Please confirm that you are 18 years of age or older.");
+    if (isTattoo && ageConfirm && !ageConfirm.checked) {
+      showError(
+        ageConfirm,
+        "Please confirm that you are 18 years of age or older.",
+      );
       return;
     }
 
     if (privacyConsent && !privacyConsent.checked) {
-      showError(privacyConsent, "Please agree to the Privacy Policy before submitting.");
+      showError(
+        privacyConsent,
+        "Please agree to the Privacy Policy before submitting.",
+      );
       return;
     }
 
-   const formData = new FormData(bookingForm);
+    console.log("Booking submit reached");
 
-fetch(bookingForm.action, {
-  method: "POST",
-  body: formData,
-  headers: {
-    Accept: "application/json",
-  },
-})
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error("Form submission failed");
-    }
+    fetch(bookingForm.action, {
+      method: "POST",
+      body: new FormData(bookingForm),
+      headers: {
+        Accept: "application/json",
+      },
+    })
+      .then(async (response) => {
+        const data = await response.json().catch(() => null);
 
-    showAlert(
-      "success",
-      "Booking request sent!",
-      "Thank you. We will get back to you soon."
-    );
+        console.log("FormSubmit status:", response.status);
+        console.log("FormSubmit response:", data);
 
-    bookingForm.reset();
-  })
-  .catch(() => {
-    showAlert(
-      "error",
-      "Message not sent",
-      "Please try again or contact the studio by email."
-    );
-  });
+        if (!response.ok) {
+          throw new Error(data?.message || "Form submission failed");
+        }
 
-    updateBookingFields();
-  });
+        showAlert(
+          "success",
+          "Booking request sent!",
+          "Thank you. We will get back to you soon.",
+        );
 
-  bookingForm
-    .querySelectorAll("input, textarea, select")
-    .forEach((field) => {
-      ["input", "change"].forEach((eventName) => {
-        field.addEventListener(eventName, () => clearFieldError(field));
+        bookingForm.reset();
+        updateBookingFields();
+      })
+      .catch((error) => {
+        console.error("Booking form error:", error);
+
+        showAlert(
+          "error",
+          "Message not sent",
+          error.message || "Please try again or contact the studio by email.",
+        );
       });
+  });
+
+  bookingForm.querySelectorAll("input, textarea, select").forEach((field) => {
+    ["input", "change"].forEach((eventName) => {
+      field.addEventListener(eventName, () => clearFieldError(field));
     });
+  });
 }
 
 function isValidEmail(email) {
@@ -240,7 +271,7 @@ function showAlert(icon, title, text) {
       text,
       confirmButtonColor: "#AA671C",
       background: "#193426",
-      color: "#F4EAD7"
+      color: "#F4EAD7",
     });
     return;
   }
@@ -273,7 +304,7 @@ function initFaqAccordion() {
 
 function initScrollAnimations() {
   const animatedItems = qsa(
-    ".hero-copy, .visual-card, .artist-card, .review-card, .booking-card, .care-card, .editorial-card"
+    ".hero-copy, .visual-card, .artist-card, .review-card, .booking-card, .care-card, .editorial-card",
   );
 
   if (!animatedItems.length) return;
@@ -303,7 +334,7 @@ function initScrollAnimations() {
         observer.unobserve(entry.target);
       });
     },
-    { threshold: 0.14 }
+    { threshold: 0.14 },
   );
 
   animatedItems.forEach((el) => observer.observe(el));
@@ -456,14 +487,14 @@ function initArtistSlider() {
   nextBtn.addEventListener("click", () => {
     track.scrollBy({
       left: track.clientWidth,
-      behavior: "smooth"
+      behavior: "smooth",
     });
   });
 
   prevBtn.addEventListener("click", () => {
     track.scrollBy({
       left: -track.clientWidth,
-      behavior: "smooth"
+      behavior: "smooth",
     });
   });
 
@@ -498,9 +529,7 @@ function initGuestForm() {
       .querySelectorAll(".form-error")
       .forEach((el) => el.classList.remove("form-error"));
 
-    guestForm
-      .querySelectorAll(".error-message")
-      .forEach((el) => el.remove());
+    guestForm.querySelectorAll(".error-message").forEach((el) => el.remove());
   }
 
   function showError(field, message) {
@@ -516,7 +545,7 @@ function initGuestForm() {
 
     target.scrollIntoView({
       behavior: "smooth",
-      block: "center"
+      block: "center",
     });
 
     field.focus();
@@ -553,49 +582,49 @@ function initGuestForm() {
     }
 
     if (privacyConsent && !privacyConsent.checked) {
-      showError(privacyConsent, "Please agree to the Privacy Policy before submitting.");
+      showError(
+        privacyConsent,
+        "Please agree to the Privacy Policy before submitting.",
+      );
       return;
     }
 
-const formData = new FormData(guestForm);
+    const formData = new FormData(guestForm);
 
-fetch(guestForm.action, {
-  method: "POST",
-  body: formData,
-  headers: {
-    Accept: "application/json",
-  },
-})
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error("Form submission failed");
-    }
+    fetch(guestForm.action, {
+      method: "POST",
+      body: formData,
+      headers: {
+        Accept: "application/json",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Form submission failed");
+        }
 
-    showAlert(
-      "success",
-      "Guest request sent!",
-      "Thank you. We will get back to you soon."
-    );
+        showAlert(
+          "success",
+          "Guest request sent!",
+          "Thank you. We will get back to you soon.",
+        );
 
-    guestForm.reset();
-  })
-  .catch(() => {
-    showAlert(
-      "error",
-      "Message not sent",
-      "Please try again or contact the studio by email."
-    );
-  });
-
-  });
-
-  guestForm
-    .querySelectorAll("input, textarea, select")
-    .forEach((field) => {
-      ["input", "change"].forEach((eventName) => {
-        field.addEventListener(eventName, () => clearFieldError(field));
+        guestForm.reset();
+      })
+      .catch(() => {
+        showAlert(
+          "error",
+          "Message not sent",
+          "Please try again or contact the studio by email.",
+        );
       });
+  });
+
+  guestForm.querySelectorAll("input, textarea, select").forEach((field) => {
+    ["input", "change"].forEach((eventName) => {
+      field.addEventListener(eventName, () => clearFieldError(field));
     });
+  });
 }
 
 function initCareReadMore() {
