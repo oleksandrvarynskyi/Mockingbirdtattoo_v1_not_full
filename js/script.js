@@ -213,7 +213,7 @@ function initBookingForm() {
       return;
     }
 
-    console.log("Booking submit reached");
+    // console.log("Booking submit reached");
 
     fetch(bookingForm.action, {
       method: "POST",
@@ -225,8 +225,8 @@ function initBookingForm() {
       .then(async (response) => {
         const data = await response.json().catch(() => null);
 
-        console.log("FormSubmit status:", response.status);
-        console.log("FormSubmit response:", data);
+        // console.log("FormSubmit status:", response.status);
+        // console.log("FormSubmit response:", data);
 
         if (!response.ok) {
           throw new Error(data?.message || "Form submission failed");
@@ -242,7 +242,7 @@ function initBookingForm() {
         updateBookingFields();
       })
       .catch((error) => {
-        console.error("Booking form error:", error);
+        // console.error("Booking form error:", error);
 
         showAlert(
           "error",
