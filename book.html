@@ -2,52 +2,90 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Book Appointment</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="icon" type="image/png" href="access/img/favicon.png" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>
+      Book a Tattoo or Piercing Appointment | Mockingbird Tattoo Studio Calgary
+    </title>
+    <meta
+      content="Request a tattoo or piercing appointment with Mockingbird Tattoo Studio in Calgary and send your idea, references and preferred date."
+      name="description"
+    />
+    <meta content="#193426" name="theme-color" />
+    <meta content="Mockingbird Tattoo Studio" property="og:site_name" />
+    <meta content="website" property="og:type" />
+    <meta
+      content="Book a Tattoo or Piercing Appointment | Mockingbird Tattoo Studio Calgary"
+      property="og:title"
+    />
+    <meta
+      content="Request a tattoo or piercing appointment with Mockingbird Tattoo Studio in Calgary and send your idea, references and preferred date."
+      property="og:description"
+    />
+    <meta content="access/img/client-logo.png" property="og:image" />
+    <meta content="summary_large_image" name="twitter:card" />
+    <meta
+      content="Book a Tattoo or Piercing Appointment | Mockingbird Tattoo Studio Calgary"
+      name="twitter:title"
+    />
+    <meta
+      content="Request a tattoo or piercing appointment with Mockingbird Tattoo Studio in Calgary and send your idea, references and preferred date."
+      name="twitter:description"
+    />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="access/img/favicon.png" rel="icon" type="image/png" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap"
       rel="stylesheet"
     />
     <link
-      rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/style.css?v=20260610-v4" />
+    <link href="css/style.css?v=20260801-final-qa" rel="stylesheet" />
   </head>
   <body>
     <header class="site-header">
       <div class="container nav-inner">
-        <a class="logo-link" href="index.html" aria-label="Homepage">
+        <a aria-label="Homepage" class="logo-link" href="index.html">
           <div class="logo-box">
             <img
-              src="access/img/client-logo.png"
               alt="Mockingbird Tattoo Studio"
+              decoding="async"
+              height="1024"
+              src="access/img/client-logo.png"
+              width="1024"
             />
           </div>
         </a>
-        <button class="nav-toggle" id="navToggle" aria-label="Open menu">
-          <span></span><span></span><span></span>
+        <button
+          aria-controls="mainNav"
+          aria-expanded="false"
+          aria-label="Open menu"
+          class="nav-toggle"
+          id="navToggle"
+          type="button"
+        >
+          <span> </span>
+          <span> </span>
+          <span> </span>
         </button>
-        <nav class="main-nav" id="mainNav">
-          <a href="artists.html">Artists</a>
-          <a href="tattoo-piercing.html">Tattoo & Piercing</a>
-          <a href="care-faq.html">Care & FAQ</a>
-          <a href="guest-spot.html">Guest Spot</a>
-          <a href="reviews.html">Reviews</a>
-          <a href="location.html">Location</a>
-          <a href="contact.html">Contact</a>
-          <a class="nav-book" href="book.html">Book Appointment</a>
+        <nav aria-label="Main navigation" class="main-nav" id="mainNav">
+          <a href="artists.html"> Artists </a>
+          <a href="tattoo-piercing.html"> Tattoo &amp; Piercing </a>
+          <a href="care-faq.html"> Care &amp; FAQ </a>
+          <a href="guest-spot.html"> Guest Spot </a>
+          <a href="reviews.html"> Reviews </a>
+          <a href="location.html"> Location </a>
+          <a href="contact.html"> Contact </a>
+          <a class="nav-book" href="book.html"> Book Appointment </a>
         </nav>
       </div>
     </header>
-
     <main>
       <section class="page-hero">
         <div class="container">
-          <span class="eyebrow">Book Appointment</span>
+          <span class="eyebrow"> Book Appointment </span>
           <h1>Request an appointment</h1>
           <p>
             The first question decides whether the form is for tattoo or
@@ -57,14 +95,21 @@
       </section>
       <section class="booking-page">
         <div class="container">
-          <form id="bookingForm" class="booking-card full-form" novalidate>
-            <label>Service type</label
-            ><select id="serviceType">
+          <form
+            class="booking-card full-form"
+            data-form-purpose="booking-request"
+            enctype="multipart/form-data"
+            id="bookingForm"
+            method="post"
+            novalidate=""
+          >
+            <label for="serviceType"> Service type </label>
+            <select id="serviceType" name="serviceType" required="">
               <option value="Tattoo">Tattoo</option>
               <option value="Piercing">Piercing</option>
             </select>
-            <label>Preferred artist</label
-            ><select id="preferredArtist">
+            <label for="preferredArtist"> Preferred artist </label>
+            <select id="preferredArtist" name="preferredArtist">
               <option value="Any">Any artist</option>
               <option value="Artem">Artem</option>
               <option value="Ashley">Ashley</option>
@@ -77,99 +122,152 @@
               <option value="Wiktoria">Wiktoria</option>
               <option value="Xenia">Xenia</option>
             </select>
-            <label>Name</label><input placeholder="Your name" id="fullName" />
-            <label>Email</label
-            ><input type="email" placeholder="Your email" id="email" />
-
-            <label id="ideaLabel">Tattoo idea</label
-            ><textarea
+            <label for="fullName"> Name </label>
+            <input
+              autocomplete="name"
+              id="fullName"
+              name="fullName"
+              placeholder="Your name"
+              required=""
+              type="text"
+            />
+            <label for="email"> Email </label>
+            <input
+              autocomplete="email"
+              id="email"
+              name="email"
+              placeholder="Your email"
+              required=""
+              type="email"
+            />
+            <label for="ideaField" id="ideaLabel"> Tattoo idea </label>
+            <textarea
               id="ideaField"
+              minlength="10"
+              name="ideaDetails"
               placeholder="Tell us about your tattoo idea, placement and size"
+              required=""
             ></textarea>
-
-            <label>Reference image or link</label>
+            <label for="referenceUrl"> Reference image or link </label>
             <div class="upload-options">
               <input
-                type="url"
+                id="referenceUrl"
+                name="referenceUrl"
                 placeholder="Paste reference link / Instagram / Pinterest"
+                type="url"
               />
-              <small>or upload a sketch / reference image</small>
-              <input type="file" accept="image/*" />
+              <small> or upload a sketch / reference image </small>
+              <input
+                accept="image/jpeg,image/png,image/webp,image/heic,image/heif"
+                id="referenceFile"
+                name="referenceFile"
+                type="file"
+              />
             </div>
-
             <div class="date-wrapper">
-              <label for="preferredDate">Preferred date</label>
-
+              <label for="preferredDate"> Preferred date </label>
               <div class="date-input-wrapper">
-                <input type="date" id="preferredDate" />
-                <i class="fa-regular fa-calendar"></i>
+                <input id="preferredDate" name="preferredDate" type="date" />
+                <i aria-hidden="true" class="fa-regular fa-calendar"> </i>
               </div>
             </div>
-
+            <label class="form-checkbox" for="ageConfirm">
+              <input
+                id="ageConfirm"
+                name="ageConfirm"
+                required=""
+                type="checkbox"
+              />
+              <span> I confirm that I am 18 years of age or older. </span>
+            </label>
+            <label class="form-checkbox" for="privacyConsent">
+              <input
+                id="privacyConsent"
+                name="privacyConsent"
+                required=""
+                type="checkbox"
+              />
+              <span>
+                I agree to the collection and use of my personal information as
+                described in the
+                <a
+                  href="./access/docs/mockingbird-privacy-policy.pdf"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Privacy Policy
+                </a>
+                .
+              </span>
+            </label>
             <button type="submit">Send Request</button>
           </form>
         </div>
       </section>
     </main>
-
     <footer class="cinematic-footer">
       <div class="footer-grain"></div>
       <div class="footer-bg-title">MOCKINGBIRD</div>
-
       <div class="container footer-inner">
         <!-- BRAND -->
         <div class="footer-left">
-          <span class="footer-brand-name">Mockingbird</span>
-          <span class="footer-brand-sub">Tattoo Studio · Calgary · YYC</span>
+          <span class="footer-brand-name"> Mockingbird </span>
+          <span class="footer-brand-sub">
+            Tattoo Studio &middot; Calgary &middot; YYC
+          </span>
           <p class="footer-description">
-            Premium tattoo & piercing studio focused on custom work, guest
+            Premium tattoo &amp; piercing studio focused on custom work, guest
             artists and calm creative sessions.
           </p>
-          <a class="footer-book-btn" href="book.html">Book Appointment →</a>
+          <a class="footer-book-btn" href="book.html">
+            Book Appointment &rarr;
+          </a>
         </div>
-
         <!-- HOURS -->
         <div class="footer-column">
-          <span class="footer-label">Hours</span>
+          <span class="footer-label"> Hours </span>
           <div class="footer-info">
-            <span>Mon — Sat</span>
-            <span>12:00 PM - 05:00 PM</span>
+            <span> Mon &mdash; Sat </span>
+            <span> 12:00 PM - 05:00 PM </span>
           </div>
           <div class="footer-info">
-            <span>Sunday</span>
-            <span>By appointment</span>
+            <span> Sunday </span>
+            <span> By appointment </span>
           </div>
-          <span class="footer-open-badge">
-            <span class="footer-open-dot"></span>Open today
-          </span>
+          <!-- <span class="footer-open-badge">
+            By appointment
+            <span class="footer-open-dot"> </span>
+            By appointment
+          </span> -->
         </div>
-
         <!-- VISIT -->
         <div class="footer-column">
-          <span class="footer-label">Visit</span>
+          <span class="footer-label"> Visit </span>
           <div class="footer-info">
-            <span>Kensington</span>
-            <span>Calgary, Alberta</span>
-            <span>Canada</span>
+            <span> Kensington </span>
+            <span> Calgary, Alberta </span>
+            <span> Canada </span>
           </div>
           <a
-            href="https://www.google.com/maps/place/Mockingbird+Tattoos/@51.0535474,-114.088712,17z/data=!3m2!4b1!5s0x53716feed3c9bd31:0x91c54ef233f82624!4m6!3m5!1s0x53716ffaaecb4ed3:0x565e5e9e5e6d8f56!8m2!3d51.0535441!4d-114.0861371!16s%2Fg%2F11k40_llrk?hl=en&entry=ttu&g_ep=EgoyMDI2MDUxNy4wIKXMDSoASAFQAw%3D%3D"
-            target="_blank"
             class="footer-link"
-            >Open Google Maps →</a
+            href="https://www.google.com/maps/place/Mockingbird+Tattoos/@51.0535474,-114.088712,17z/data=!3m2!4b1!5s0x53716feed3c9bd31:0x91c54ef233f82624!4m6!3m5!1s0x53716ffaaecb4ed3:0x565e5e9e5e6d8f56!8m2!3d51.0535441!4d-114.0861371!16s%2Fg%2F11k40_llrk?hl=en&amp;entry=ttu&amp;g_ep=EgoyMDI2MDUxNy4wIKXMDSoASAFQAw%3D%3D"
+            rel="noopener noreferrer"
+            target="_blank"
           >
+            Open Google Maps &rarr;
+          </a>
         </div>
-
         <!-- CONNECT -->
         <div class="footer-column">
-          <span class="footer-label">Connect</span>
+          <span class="footer-label"> Connect </span>
           <div class="footer-socials">
             <a
-              href="https://www.instagram.com/mockingbirdtattoos"
-              target="_blank"
               aria-label="Instagram"
+              href="https://www.instagram.com/mockingbirdtattoos"
+              rel="noopener noreferrer"
+              target="_blank"
             >
-              <i class="fa-brands fa-instagram"></i>
+              <i class="fa-brands fa-instagram"> </i>
             </a>
           </div>
           <p class="footer-connect-note">
@@ -177,18 +275,16 @@
           </p>
         </div>
       </div>
-
       <!-- BOTTOM BAR -->
       <div class="footer-bottom">
         <div class="footer-bottom-links">
-          <a href="privacy.html">Privacy</a>
-          <a href="care-faq.html">Care &amp; FAQ</a>
+          <a href="./access/docs/mockingbird-privacy-policy.pdf"> Privacy </a>
+          <a href="care-faq.html"> Care &amp; FAQ </a>
         </div>
-        <p>© 2026 Mockingbird Tattoo Studio</p>
-        <span>Developed by Varynskyi Web Dev</span>
+        <p>&copy; 2026 Mockingbird Tattoo Studio</p>
+        <span> Developed by Varynskyi Web Dev </span>
       </div>
     </footer>
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/script.js"></script>
   </body>
