@@ -1720,7 +1720,6 @@
     border-color: var(--orange);
   }
   button {
-    background: var(--orange);
     border-color: var(--orange);
     color: #fff;
   }
@@ -1749,13 +1748,19 @@
     gap: 12px;
     width: 100%;
     display: flex;
+    max-width: 100%;
+    min-width:0;
   }
   .date-input-wrapper {
     width: 100%;
+    max-width: 100%;
+    min-width:0;
     position: relative;
   }
   .date-input-wrapper input[type="date"] {
     width: 100%;
+     max-width: 100%;
+    min-width:0;
     padding-right: 48px;
   }
   .date-input-wrapper input[type="date"]::-webkit-calendar-picker-indicator {
